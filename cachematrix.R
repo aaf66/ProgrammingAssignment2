@@ -1,7 +1,11 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
+# assignment
+# 1. This function creates a special "matrix" object that can cache its inverse.
+# use solve() to calculate the inverse of the matrix
+# matrix to test
+A <- matrix( c(5, 1, 0,
+               3,-1, 2,
+               4, 0,-1), nrow=3, byrow=TRUE)
+A
 
 makeCacheMatrix <- function(x = matrix()) {
   mat_inv <- NULL
@@ -16,9 +20,10 @@ makeCacheMatrix <- function(x = matrix()) {
        setinv = setinv,
        getinv = getinv)
 }
+# test the function on the test matrix A
+test <- makeCacheMatrix(A)
 
-
-## Write a short comment describing this function
+## This function computes the inverse of the special "matrix" returned by makeCacheMatrix above. If the inverse has already been calculated (and the matrix has not changed), then the cachesolve should retrieve the inverse from the cache.
 
 cacheSolve <- function(x, ...) {
     m <- x$getinv()
@@ -30,5 +35,9 @@ cacheSolve <- function(x, ...) {
     m <- solve(data, ...)
     x$setinv(m)
     m
-  } 
+  }  
+
+# test the function
+cacheSolve(test)
+solve(A)
 
